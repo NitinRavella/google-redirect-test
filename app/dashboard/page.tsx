@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged, signOut, User } from "firebase/auth";
 import { auth } from "../../lib/Firebase";
+import Image from "next/image";
 
 export default function DashboardPage() {
     const router = useRouter();
@@ -47,7 +48,7 @@ export default function DashboardPage() {
                     </div>
 
                     {user.photoURL && (
-                        <img
+                        <Image
                             src={user.photoURL}
                             alt="User"
                             className="h-10 w-10 rounded-full border"

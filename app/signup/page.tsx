@@ -9,6 +9,7 @@ import {
     onAuthStateChanged,
 } from "firebase/auth";
 import { auth } from "../../lib/Firebase";
+import Image from "next/image";
 
 export default function SignupPage() {
     const router = useRouter();
@@ -61,7 +62,7 @@ export default function SignupPage() {
                     onClick={signInPopup}
                     className="mb-4 flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white py-3 font-medium text-gray-800 transition hover:bg-gray-50"
                 >
-                    <img
+                    <Image
                         src="https://www.svgrepo.com/show/475656/google-color.svg"
                         alt="Google"
                         className="h-5 w-5"
@@ -81,7 +82,7 @@ export default function SignupPage() {
                     onClick={signInRedirect}
                     className="flex w-full items-center justify-center gap-3 rounded-lg bg-black py-3 font-medium text-white transition hover:bg-gray-900"
                 >
-                    <img
+                    <Image
                         src="https://www.svgrepo.com/show/475656/google-color.svg"
                         alt="Google"
                         className="h-5 w-5 invert"
