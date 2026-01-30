@@ -49,6 +49,8 @@ export default function DashboardPage() {
 
                     {user.photoURL && (
                         <Image
+                            width={40}
+                            height={40}
                             src={user.photoURL}
                             alt="User"
                             className="h-10 w-10 rounded-full border"

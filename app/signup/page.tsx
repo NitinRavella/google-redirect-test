@@ -7,6 +7,7 @@ import {
     signInWithPopup,
     signInWithRedirect,
     onAuthStateChanged,
+    getRedirectResult
 } from "firebase/auth";
 import { auth } from "../../lib/Firebase";
 import Image from "next/image";
@@ -16,9 +17,24 @@ export default function SignupPage() {
     const handled = useRef(false);
 
     useEffect(() => {
-        const unsub = onAuthStateChanged(auth, (user) => {
-            console.log("AUTH STATE:", user);
 
+        getRedirectResult(auth)
+
+            .then((result) => {
+                console.log("REDIRECT RESULT:", result);
+                if (result?.user) {
+
+                    // User signed in successfully
+
+                }
+
+            })
+
+            .catch((error) => console.error("Redirect error:", error));
+
+    }, []);
+    useEffect(() => {
+        const unsub = onAuthStateChanged(auth, (user) => {
             if (user && !handled.current) {
                 handled.current = true;
                 router.replace("/dashboard");
@@ -63,6 +79,8 @@ export default function SignupPage() {
                     className="mb-4 flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white py-3 font-medium text-gray-800 transition hover:bg-gray-50"
                 >
                     <Image
+                        width={24}
+                        height={24}
                         src="https://www.svgrepo.com/show/475656/google-color.svg"
                         alt="Google"
                         className="h-5 w-5"
@@ -83,6 +101,8 @@ export default function SignupPage() {
                     className="flex w-full items-center justify-center gap-3 rounded-lg bg-black py-3 font-medium text-white transition hover:bg-gray-900"
                 >
                     <Image
+                        width={24}
+                        height={24}
                         src="https://www.svgrepo.com/show/475656/google-color.svg"
                         alt="Google"
                         className="h-5 w-5 invert"
